@@ -18,7 +18,7 @@
 </div>
 
 <div *ngIf="filterText.length" class="alert alert-success">
-  {{filterText}} aradınız
+  {{ filterText }} aradınız
 </div>
 
 <table *ngIf="dataLoaded == true" class="table">
@@ -30,16 +30,18 @@
       <th scope="col">Unit Price</th>
       <th scope="col">VAT Price</th>
       <th scope="col">Units In Stock</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products | filterPipe:filterText">
+    <tr *ngFor="let product of products | filterPipe: filterText">
       <td>{{ product.productId }}</td>
       <td>{{ product.productName }}</td>
       <td>{{ product.categoryId }}</td>
       <td>{{ product.unitPrice | currency }}</td>
       <td>{{ product.unitPrice | vatAdded: 18 | currency }}</td>
       <td>{{ product.unitsInStock }}</td>
+      <td><button (click)="addToCart(product)" type="button" class="btn btn-success">Sepete Ekle</button></td>
     </tr>
   </tbody>
 </table>
